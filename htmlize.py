@@ -25,7 +25,7 @@ client = OpenAI(
 
 def htmlize(text):
     prompt = f"""
-    Turn the following article in text form into HTML. Put formatting (headings, etc.) in the appropriate places. Put images where you think they'd be appropriate. Each image should have exactly the string "image_placeholder.jpg" in the `src` attribute and for the `alt` attribute I want you to generate a prompt that can be used to generate an image. Each image should also have a subtitle with a description of the image.
+    Turn the following article in text form into HTML. Put formatting (headings, etc.) in the appropriate places. Put images where you think they'd be appropriate. Each image should have exactly the string "image_placeholder.jpg" in the `src` attribute and for the `alt` attribute I want you to generate a prompt that can be used to generate an image. Each image should be followed by `div` tag with a Polish description of the image.
 
     The article is as follows:
     {text}
@@ -35,7 +35,7 @@ def htmlize(text):
         messages=[
             {
                 "role": "system",
-                "content": "You're a HTML generator. You generate only HTML5 output that can be put INSIDE the document body with no CSS or Javascript.",
+                "content": "You're a HTML generator. You generate only HTML5 output that can be put INSIDE the document body with no CSS or Javascript. Output only HTML with not quotes around it. The resulting message will be treated as a HTML by a machine. Keep that in mind.",
             },
             {
                 "role": "user",
